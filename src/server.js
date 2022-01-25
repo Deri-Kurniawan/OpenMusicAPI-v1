@@ -1,0 +1,44 @@
+const Hapi = require('@hapi/hapi');
+const album = require('./api/albums');
+const song = require('./api/songs');
+const AlbumService = require('./services/postgres/AlbumsService');
+const SongService = require('./services/postgres/SongsService');
+const AlbumValidator = require('./validator/albums');
+const SongValidator = require('./validator/songs');
+
+require('dotenv').config();
+
+const init = async () => {
+  const albumService = new AlbumService();
+  const songService = new SongService();
+  const server = Hapi.server({
+    port: process.env.PORT,
+    host: process.env.HOST,
+    routes: {
+      cors: {
+        origin: ['*'],
+      },
+    },
+  });
+
+  await server.register({
+    plugin: album,
+    options: {
+      service: albumService,
+      validator: AlbumValidator,
+    },
+  });
+
+  await server.register({
+    plugin: song,
+    options: {
+      service: songService,
+      validator: SongValidator,
+    },
+  });
+
+  await server.start();
+  console.log(`Server berjalan pada ${server.info.uri}`);
+};
+
+init();
