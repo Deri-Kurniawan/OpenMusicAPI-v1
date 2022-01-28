@@ -30,17 +30,16 @@ class SongsHandler {
         data: {
           songId,
         },
-      });
+      }).code(201);
 
-      response.code(201);
       return response;
     } catch (error) {
       if (error instanceof ClientError) {
         const response = h.response({
           status: 'fail',
           message: error.message,
-        });
-        response.code(error.statusCode);
+        }).code(error.statusCode);
+
         return response;
       }
 
@@ -48,9 +47,9 @@ class SongsHandler {
       const response = h.response({
         status: 'error',
         message: 'Maaf, terjadi kegagalan pada server kami.',
-      });
-      response.code(500);
+      }).code(500);
       console.error(error);
+
       return response;
     }
   }
@@ -58,6 +57,7 @@ class SongsHandler {
   async getSongsHandler(request) {
     const { title, performer } = request.query;
     const songs = await this._service.getSongs({ title, performer });
+
     return {
       status: 'success',
       data: {
@@ -76,18 +76,16 @@ class SongsHandler {
         data: {
           song,
         },
-      });
+      }).code(200);
 
-      response.code(200);
       return response;
     } catch (error) {
       if (error instanceof ClientError) {
         const response = h.response({
           status: 'fail',
           message: error.message,
-        });
+        }).code(error.statusCode);
 
-        response.code(error.statusCode);
         return response;
       }
 
@@ -95,10 +93,9 @@ class SongsHandler {
       const response = h.response({
         status: 'error',
         message: 'Maaf, terjadi kegagalan pada server kami.',
-      });
-
-      response.code(500);
+      }).code(500);
       console.error(error);
+
       return response;
     }
   }
@@ -125,8 +122,8 @@ class SongsHandler {
         const response = h.response({
           status: 'fail',
           message: error.message,
-        });
-        response.code(error.statusCode);
+        }).code(error.statusCode);
+
         return response;
       }
 
@@ -134,9 +131,10 @@ class SongsHandler {
       const response = h.response({
         status: 'error',
         message: 'Maaf, terjadi kegagalan pada server kami.',
-      });
-      response.code(500);
+      }).code(500);
+
       console.error(error);
+
       return response;
     }
   }
@@ -155,8 +153,8 @@ class SongsHandler {
         const response = h.response({
           status: 'fail',
           message: error.message,
-        });
-        response.code(error.statusCode);
+        }).code(error.statusCode);
+
         return response;
       }
 
@@ -164,9 +162,9 @@ class SongsHandler {
       const response = h.response({
         status: 'error',
         message: 'Maaf, terjadi kegagalan pada server kami.',
-      });
-      response.code(500);
+      }).code(500);
       console.error(error);
+
       return response;
     }
   }

@@ -25,26 +25,26 @@ class AlbumsHandler {
         data: {
           albumId,
         },
-      });
-      response.code(201);
+      }).code(201);
+
       return response;
     } catch (error) {
       if (error instanceof ClientError) {
         const response = h.response({
           status: 'fail',
           message: error.message,
-        });
-        response.code(error.statusCode);
+        }).code(error.statusCode);
+
         return response;
       }
 
-      // Server ERROR!
+      // Server Error 500
       const response = h.response({
         status: 'error',
         message: 'Maaf, terjadi kegagalan pada server kami.',
-      });
-      response.code(500);
+      }).code(500);
       console.error(error);
+
       return response;
     }
   }
@@ -69,29 +69,26 @@ class AlbumsHandler {
         data: {
           album,
         },
-      });
+      }).code(200);
 
-      response.code(200);
       return response;
     } catch (error) {
       if (error instanceof ClientError) {
         const response = h.response({
           status: 'fail',
           message: error.message,
-        });
+        }).code(error.statusCode);
 
-        response.code(error.statusCode);
         return response;
       }
 
-      // Server ERROR!
+      // Server Error 500
       const response = h.response({
         status: 'error',
         message: 'Maaf, terjadi kegagalan pada server kami.',
-      });
-
-      response.code(500);
+      }).code(500);
       console.error(error);
+
       return response;
     }
   }
@@ -113,17 +110,17 @@ class AlbumsHandler {
         const response = h.response({
           status: 'fail',
           message: error.message,
-        });
-        response.code(error.statusCode);
+        }).code(error.statusCode);
+
         return response;
       }
 
-      // Server ERROR!
+      // Server Error 500
       const response = h.response({
         status: 'error',
         message: 'Maaf, terjadi kegagalan pada server kami.',
-      });
-      response.code(500);
+      }).code(500);
+
       console.error(error);
       return response;
     }
@@ -143,18 +140,18 @@ class AlbumsHandler {
         const response = h.response({
           status: 'fail',
           message: error.message,
-        });
-        response.code(error.statusCode);
+        }).code(error.statusCode);
+
         return response;
       }
 
-      // Server ERROR!
+      // Server Error 500
       const response = h.response({
         status: 'error',
         message: 'Maaf, terjadi kegagalan pada server kami.',
-      });
-      response.code(500);
+      }).code(500);
       console.error(error);
+
       return response;
     }
   }
