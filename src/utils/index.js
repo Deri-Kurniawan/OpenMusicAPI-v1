@@ -3,14 +3,22 @@ const mapDBToModelGetAlbums = ({
   id,
   name,
   year,
-  created_at,
-  updated_at,
 }) => ({
   id,
   name,
   year,
-  createdAt: created_at,
-  updatedAt: updated_at,
+});
+
+const mapDBToModelGetAlbumWithSongs = ({
+  id,
+  name,
+  year,
+  songs,
+}) => ({
+  id,
+  name,
+  year,
+  songs,
 });
 
 const mapDBToModelGetSongs = ({
@@ -41,4 +49,20 @@ const mapDBToModelGetSongById = ({
   albumId: album_id,
 });
 
-module.exports = { mapDBToModelGetAlbums, mapDBToModelGetSongs, mapDBToModelGetSongById };
+const mapDBToModelGetFilteredSongsByAlbumId = ({
+  id,
+  year,
+  performer,
+}) => ({
+  id,
+  year,
+  performer,
+});
+
+module.exports = {
+  mapDBToModelGetAlbums,
+  mapDBToModelGetSongs,
+  mapDBToModelGetSongById,
+  mapDBToModelGetAlbumWithSongs,
+  mapDBToModelGetFilteredSongsByAlbumId,
+};
