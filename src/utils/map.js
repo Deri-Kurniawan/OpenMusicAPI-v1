@@ -1,5 +1,9 @@
 /* eslint-disable camelcase */
-const mapDBToModelGetAlbums = ({
+
+/**
+ * For Albums
+ */
+const mapDBToModelAlbumsType1 = ({
   id,
   name,
   year,
@@ -9,7 +13,10 @@ const mapDBToModelGetAlbums = ({
   year,
 });
 
-const mapDBToModelGetAlbumWithSongs = ({
+/**
+ * For detail album with album songs
+ */
+const mapDBToModelAlbumsType2 = ({
   id,
   name,
   year,
@@ -21,7 +28,10 @@ const mapDBToModelGetAlbumWithSongs = ({
   songs,
 });
 
-const mapDBToModelGetSongs = ({
+/**
+ * For Songs
+ */
+const mapDBToModelSongsType1 = ({
   id,
   title,
   performer,
@@ -31,7 +41,10 @@ const mapDBToModelGetSongs = ({
   performer,
 });
 
-const mapDBToModelGetSongById = ({
+/**
+ * For Song by Id
+ */
+const mapDBToModelSongsType2 = ({
   id,
   title,
   year,
@@ -49,7 +62,10 @@ const mapDBToModelGetSongById = ({
   albumId: album_id,
 });
 
-const mapDBToModelGetFilteredSongsByAlbumId = ({
+/**
+ * For filtered songs by album id
+ */
+const mapDBToModelSongsType3 = ({
   id,
   year,
   performer,
@@ -60,9 +76,9 @@ const mapDBToModelGetFilteredSongsByAlbumId = ({
 });
 
 module.exports = {
-  mapDBToModelGetAlbums,
-  mapDBToModelGetSongs,
-  mapDBToModelGetSongById,
-  mapDBToModelGetAlbumWithSongs,
-  mapDBToModelGetFilteredSongsByAlbumId,
+  mapDBToModelAlbumsType1,
+  mapDBToModelSongsType1,
+  mapDBToModelSongsType2,
+  mapDBToModelAlbumsType2,
+  mapDBToModelSongsType3,
 };
