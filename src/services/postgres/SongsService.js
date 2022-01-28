@@ -57,17 +57,17 @@ class SongsService {
         (song) => song.title === title && song.performer === performer,
       );
 
-      return filteredSongs;
+      return filteredSongs.map(mapDBToModelSongsType1);
     }
 
     if (title !== null) {
       filteredSongs = result.rows.filter((song) => song.title === title);
-      return filteredSongs;
+      return filteredSongs.map(mapDBToModelSongsType1);
     }
 
     if (performer !== null) {
       filteredSongs = result.rows.filter((song) => song.performer === performer);
-      return filteredSongs;
+      return filteredSongs.map(mapDBToModelSongsType1);
     }
 
     if (result.rows.length > 0) {
