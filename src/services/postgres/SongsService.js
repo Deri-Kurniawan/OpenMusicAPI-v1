@@ -31,8 +31,26 @@ class SongsService {
     return result.rows[0].id;
   }
 
-  async getSongs() {
+  async getSongs({ title = null, performer = null }) {
     const result = await this._pool.query(`SELECT * FROM ${this._table}`);
+    let filteredSongs = [];
+
+    if (title !== null && performer !== null) {
+      // eslint-disable-next-line max-len
+      filteredSongs = result.rows.filter((song) => song.title === title && song.performer === performer);
+      return filteredSongs;
+    }
+
+    if (title !== null) {
+      filteredSongs = result.rows.filter((song) => song.title === title);
+      return filteredSongs;
+    }
+
+    if (performer !== null) {
+      filteredSongs = result.rows.filter((song) => song.performer === performer);
+      return filteredSongs;
+    }
+
     if (result.rows.length > 0) {
       return result.rows.map(mapDBToModelGetSongs);
     }
