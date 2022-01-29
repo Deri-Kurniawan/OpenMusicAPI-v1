@@ -9,6 +9,7 @@ class AlbumsService {
   constructor() {
     this._pool = new Pool();
     this._table = 'albums';
+    this._SongsService = new SongsService();
   }
 
   async addAlbum({ name, year }) {
@@ -41,8 +42,6 @@ class AlbumsService {
   }
 
   async getAlbumById(id) {
-    const songsService = new SongsService();
-
     const query = {
       text: `SELECT * FROM ${this._table} WHERE id = $1`,
       values: [id],
@@ -54,7 +53,7 @@ class AlbumsService {
       throw new NotFoundError('Album tidak ditemukan');
     }
 
-    const songs = await songsService.getSongsFilteredAlbumId(id);
+    const songs = await this._SongsService.getSongsFilteredAlbumId(id);
     result.rows[0].songs = songs;
 
     return result.rows.map(mapDBToModelAlbumsType2)[0];
